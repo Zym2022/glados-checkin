@@ -135,7 +135,7 @@ def main() -> int:
         status = call_api("/api/user/status", cookie, user_agent)
         data = status.get("data") or {}
         if data.get("leftDays") is not None:
-            log(f"账号 {mask_email(data.get('email'))}：剩余 {data['leftDays']} 天")
+            log(f"账号 {mask_email(data.get('email'))}：剩余 {float(data['leftDays']):.0f} 天")
     except (RuntimeError, AttributeError, KeyError) as exc:
         log(f"（查询剩余天数失败，不影响签到结果：{exc}）")
 
